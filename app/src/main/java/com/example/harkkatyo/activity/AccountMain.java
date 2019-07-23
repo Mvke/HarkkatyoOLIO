@@ -83,9 +83,11 @@ public class AccountMain extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("user", account);
             startActivity(intent);
         } else if (id == R.id.information) {
             Intent intent = new Intent(this, ProfileMain.class);
+            intent.putExtra("user", account);
             startActivity(intent);
 
         } else if (id == R.id.account) {
@@ -98,6 +100,13 @@ public class AccountMain extends AppCompatActivity
     }
 
     public void buttonAddAccount(View v){
+        Intent intent = new Intent(this, AccountAddActivity.class);
+        intent.putExtra("user", account);
+        startActivity(intent);
+
+    }
+
+    public void buttonEditAccount(View v){
         Intent intent = new Intent(this, AccountManagementActivity.class);
         intent.putExtra("user", account);
         startActivity(intent);

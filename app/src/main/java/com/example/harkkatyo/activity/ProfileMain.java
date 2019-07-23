@@ -70,6 +70,13 @@ public class ProfileMain extends AppCompatActivity
         password.setText(acc.getPassword());
     }
 
+    public void buttonDelete(View v) {
+        databaseHelper.deleteAccount(acc.getUsername());
+        Intent intent = new Intent(this, LoginScreen.class);
+        startActivity(intent);
+
+    }
+
     public void buttonConfrim(View v){
         String fname = firstname.getText().toString();
         String lname = lastname.getText().toString();

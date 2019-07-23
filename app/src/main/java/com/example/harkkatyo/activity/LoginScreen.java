@@ -67,8 +67,5 @@ public class LoginScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public Account getAccount(){
-        return account;
-    }
 
 }

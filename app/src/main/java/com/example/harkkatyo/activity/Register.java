@@ -41,7 +41,6 @@ public class Register extends AppCompatActivity {
         String firstname = Firstname.getText().toString();
         String lastname = Lastname.getText().toString();
         String age = Age.getText().toString();
-        int agecheck = Integer.getInteger(age);
         String username = Username.getText().toString();
         String passwordcheck1 = Password1.getText().toString();
         String passwordcheck2 = Password2.getText().toString();
@@ -61,13 +60,9 @@ public class Register extends AppCompatActivity {
 
         }
         else{
-            if (agecheck < 18){
+            databaseHelper.addDataToUser("1", username, passwordcheck2, firstname, lastname, age);
+            super.onBackPressed();
 
-            }
-            else {
-                databaseHelper.addDataToUser("1", username, passwordcheck2, firstname, lastname, age);
-                super.onBackPressed();
-            }
 
         }
     }
