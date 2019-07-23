@@ -43,7 +43,7 @@ public class AccountAddActivity extends AppCompatActivity {
         int accountnum = random.nextInt(100000);
         if(aSwitch.isChecked()) {
             int paylimit1 = Integer.parseInt(paylimit);
-            databaseHelper.addDataToCurrentAccount("qw", name, money, paylimit1, accountnum);
+            databaseHelper.addDataToCurrentAccount(account.getUsername(), name, money, paylimit1, accountnum);
         }
         else {
             databaseHelper.addDataToSavingsAccount(account.getUsername(), name, money, accountnum);
