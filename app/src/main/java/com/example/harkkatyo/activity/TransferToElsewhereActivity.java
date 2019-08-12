@@ -118,7 +118,6 @@ public class TransferToElsewhereActivity extends AppCompatActivity implements Ad
                     databaseHelper.updateCurrentAccount(account.getUsername(), bankAccount.getAccountname(),ammountminus, bankAccount.getPaylimit(), bankAccount.getAccountnumber());
                     databaseHelper.updateCurrentAccount(account.getUsername(), bankAccountTo.getAccountname(),ammountplus, bankAccountTo.getPaylimit(), bankAccountTo.getAccountnumber());
                     databaseHelper.addDataToTransactionLog(bankAccount.getAccountnumber(), bankAccountTo.getAccountnumber(), ammountstr,account.getUsername());
-                    //xml.writeXml(bankAccount.getAccountnumber(), bankAccountTo.getAccountnumber(), ammountstr);
                     super.onBackPressed();
                 }
 
@@ -143,7 +142,6 @@ public class TransferToElsewhereActivity extends AppCompatActivity implements Ad
                     databaseHelper.updateCurrentAccount(account.getUsername(), bankAccount.getAccountname(),ammountminus, bankAccount.getPaylimit(), bankAccount.getAccountnumber());
                     databaseHelper.updateSavingsAccount(account.getUsername(), bankAccountSavingsTo.getAccountname(),ammountplus, bankAccountSavingsTo.getAccountnumber());
                     databaseHelper.addDataToTransactionLog(bankAccount.getAccountnumber(), bankAccountSavingsTo.getAccountnumber(), ammountstr, account.getUsername());
-                    //xml.writeXml(bankAccount.getAccountnumber(), bankAccountSavingsTo.getAccountnumber(), ammountstr);
                     super.onBackPressed();
                 }
             }

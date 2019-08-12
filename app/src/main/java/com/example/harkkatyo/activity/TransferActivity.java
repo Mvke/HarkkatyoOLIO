@@ -207,7 +207,6 @@ public class TransferActivity extends AppCompatActivity implements AdapterView.O
                     adapterFromSavings.notifyDataSetChanged();
                     adapterToSavings.notifyDataSetChanged();
                     databaseHelper.addDataToTransactionLog(bankAccountf.getAccountnumber(), bankAccountt.getAccountnumber(), ammounntstr,account.getUsername());
-                    //xml.writeXml(bankAccountf.getAccountnumber(), bankAccountt.getAccountnumber(), ammounntstr);
                     textView.setText(" ");
 
                 }
@@ -246,7 +245,6 @@ public class TransferActivity extends AppCompatActivity implements AdapterView.O
                     adapterFromCurrent.notifyDataSetChanged();
                     adapterToSavings.notifyDataSetChanged();
                     databaseHelper.addDataToTransactionLog(bankAccountf.getAccountnumber(), bankAccountt.getAccountnumber(), ammounntstr,account.getUsername());
-                    //xml.writeXml(bankAccountf.getAccountnumber(), bankAccountt.getAccountnumber(), ammounntstr);
                     textView.setText(" ");
                 }
             }
@@ -285,7 +283,6 @@ public class TransferActivity extends AppCompatActivity implements AdapterView.O
                     adapterFromSavings.notifyDataSetChanged();
                     adapterToCurrent.notifyDataSetChanged();
                     databaseHelper.addDataToTransactionLog(bankAccountf.getAccountnumber(), bankAccountt.getAccountnumber(), ammounntstr,account.getUsername());
-                    //xml.writeXml(bankAccountf.getAccountnumber(), bankAccountt.getAccountnumber(), ammounntstr);
                     textView.setText(" ");
                 }
             }
@@ -324,7 +321,6 @@ public class TransferActivity extends AppCompatActivity implements AdapterView.O
                     adapterFromCurrent.notifyDataSetChanged();
                     adapterToCurrent.notifyDataSetChanged();
                     databaseHelper.addDataToTransactionLog(bankAccountf.getAccountnumber(), bankAccountt.getAccountnumber(), ammounntstr,account.getUsername());
-                    //xml.writeXml(bankAccountf.getAccountnumber(), bankAccountt.getAccountnumber(), ammounntstr);
                     textView.setText(" ");
 
                 }
