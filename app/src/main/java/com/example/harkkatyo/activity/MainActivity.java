@@ -1,15 +1,19 @@
 package com.example.harkkatyo.activity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import com.example.harkkatyo.Account;
+import com.example.harkkatyo.DatabaseHelper;
 import com.example.harkkatyo.R;
 
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -18,10 +22,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.Menu;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Account account;
+    DatabaseHelper databaseHelper;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-
+        databaseHelper = new DatabaseHelper(this);
+        textView = findViewById(R.id.textView3);
 
     }
 
@@ -53,27 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -96,6 +82,63 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    //Below is methods for buttons. They have a check if you have any accounts etc. and if everything is okay it takes you to next activity
+    public void buttonTransfer(View view){
+        Cursor cursor1 = databaseHelper.currentaccountData(account.getUsername());
+        Cursor cursor2 = databaseHelper.savingaccountdata(account.getUsername());
+        if(cursor1.getCount() + cursor2.getCount() < 2){
+            textView.setText("You have less that two accounts");
+
+        }
+        else{
+            Intent intent = new Intent(this, TransferActivity.class);
+            intent.putExtra("user", account);
+            startActivity(intent);
+        }
+
+    }
+
+    public void buttonPayCard(View view){
+        Cursor cursor1 = databaseHelper.getAllCreditCards(account.getUsername());
+        Cursor cursor2 = databaseHelper.getAllDebitCards(account.getUsername());
+        System.out.println(cursor1.getCount()+ cursor2.getCount());
+        if(cursor1.getCount() + cursor2.getCount() < 1){
+            textView.setText("You don't have any cards");
+
+        }
+        else{
+            Intent intent = new Intent(this, Cardpayactivity.class);
+            intent.putExtra("user", account);
+            startActivity(intent);
+        }
+    }
+
+
+    public void buttonTransferTo(View view){
+        Cursor cursor1 = databaseHelper.currentaccountData(account.getUsername());
+        if(cursor1.getCount() < 1){
+            textView.setText("You have less that one current account!");
+
+        }
+        else{
+            Intent intent = new Intent(this, TransferToElsewhereActivity.class);
+            intent.putExtra("user", account);
+            startActivity(intent);
+        }
+
+    }
+    public void buttonInfo(View view){
+        Cursor cursor1 = databaseHelper.transactionlogdata(account.getUsername());
+        if(cursor1.getCount() < 1){
+            textView.setText("You don't have any transactions");
+
+        }
+        else{
+            Intent intent = new Intent(this, TransactionInfoActivity.class);
+            intent.putExtra("user", account);
+            startActivity(intent);
+        }
     }
 
 }

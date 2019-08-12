@@ -25,16 +25,18 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.Switch;
 
 public class ProfileMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    EditText firstname;
-    EditText lastname;
-    EditText age;
-    EditText password;
-    EditText passwordcheck;
-    Account acc;
-    DatabaseHelper databaseHelper;
+    private EditText firstname;
+    private EditText lastname;
+    private EditText age;
+    private EditText password;
+    private EditText passwordcheck;
+    private Account acc;
+    private DatabaseHelper databaseHelper;
+    private Switch aSwitch;
 
 
 
@@ -60,23 +62,29 @@ public class ProfileMain extends AppCompatActivity
         password = findViewById(R.id.editText12);
         passwordcheck = findViewById(R.id.editText13);
         databaseHelper = new DatabaseHelper(this);
+        aSwitch = findViewById(R.id.switch6);
         setText();
     }
-
+    //This method sets texts for the texts boxes
     public void setText(){
         firstname.setText(acc.getFirstname());
         lastname.setText(acc.getLastname());
         age.setText(acc.getAge());
         password.setText(acc.getPassword());
     }
-
+    //This method deletes account and all the information linked to that account.
     public void buttonDelete(View v) {
-        databaseHelper.deleteAccount(acc.getUsername());
-        Intent intent = new Intent(this, LoginScreen.class);
-        startActivity(intent);
+        if(aSwitch.isChecked()){
+            databaseHelper.deleteAccount(acc.getUsername());
+            Intent intent = new Intent(this, LoginScreen.class);
+            startActivity(intent);
+        }
+        else{
+
+        }
 
     }
-
+    //This button changes the user information
     public void buttonConfrim(View v){
         String fname = firstname.getText().toString();
         String lname = lastname.getText().toString();
@@ -84,21 +92,29 @@ public class ProfileMain extends AppCompatActivity
         String pword = password.getText().toString();
         String pwordcheck = passwordcheck.getText().toString();
 
-        if(!pword.matches(pwordcheck)){
-
+        if(pword.isEmpty()){
+            password.setError("Enter password");
+        }
+        else if(!pword.matches(pwordcheck)){
+            passwordcheck.setError("Passwords doesn't match");
         }
         else if(fname.isEmpty()){
+            firstname.setError("Enter name");
 
         }
         else if(lname.isEmpty()){
+            lastname.setError("Enter lastname");
 
         }
         else if(ag.isEmpty()){
+            age.setError("Enter age");
 
         }
-        else if(pword.isEmpty()){
+        else if(Integer.parseInt(ag)<18){
+            age.setError("Your age cannot be under 18");
 
         }
+
         else{
             databaseHelper.updateUser("1", acc.getUsername() ,pwordcheck, fname, lname, ag);
             acc= new Account(1, acc.getUsername(),pwordcheck, fname, lname, ag);
@@ -121,27 +137,8 @@ public class ProfileMain extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.profile_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

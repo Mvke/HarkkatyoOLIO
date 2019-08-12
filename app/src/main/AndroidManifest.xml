@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.CardAddActivity"></activity>
+        <activity android:name=".activity.TransactionInfoActivity"></activity>
+        <activity android:name=".activity.TransferToElsewhereActivity" />
+        <activity android:name=".activity.Cardpayactivity" />
+        <activity android:name=".activity.TransferActivity" />
+        <activity android:name=".activity.CardManagementDebitActivity" />
+        <activity android:name=".activity.AccountManagementSavingsActivity" />
+        <activity android:name=".activity.CardAddActivity" />
         <activity android:name=".activity.AccountAddActivity" />
         <activity android:name=".activity.CardManagementActivity" />
         <activity android:name=".activity.AccountManagementActivity" />

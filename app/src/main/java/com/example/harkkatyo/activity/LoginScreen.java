@@ -33,17 +33,19 @@ public class LoginScreen extends AppCompatActivity {
         Text = findViewById(R.id.textView2);
 
         DBHelper = new DatabaseHelper(this);
-        DBHelper.getReadableDatabase();
 
 
 
     }
+    //button that checks starts the method below this one.
     public void buttonLogin(View v){
         String username = Name.getText().toString();
         String password = Password.getText().toString();
         validate(username, password);
 
     }
+    //This method checks if the username and password from the database matches with those in textboxes.
+    //If it matches it takes you to mainscreen.
     private void validate(String userName, String userPassword){
             Cursor cursor = DBHelper.userdata();
             while(cursor.moveToNext()){
@@ -55,13 +57,21 @@ public class LoginScreen extends AppCompatActivity {
                     Text.setText("");
                     Name.setText("");
                     Password.setText("");
+                    break;
 
 
+                }
+                else if(Name.getText().toString().isEmpty() && Password.getText().toString().isEmpty()){
+                    Name.setError("Empty lines");
+                }
+                else{
+                    Name.setError("Username or Password is not correct!");
                 }
             }
 
 
     }
+    //Takes you to next activity
     public void buttonRegister(View v){
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);

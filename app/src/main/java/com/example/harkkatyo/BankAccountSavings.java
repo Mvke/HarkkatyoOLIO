@@ -1,15 +1,13 @@
 package com.example.harkkatyo;
 
-public class BankAccount {
+public class BankAccountSavings {
     private String accountname;
     private float ammount;
-    private int paylimit;
     private String accountnumber;
 
-    public BankAccount(String acnam, float am, int limit, String an){
-        accountname = acnam;
-        ammount = am;
-        paylimit = limit;
+    public BankAccountSavings(String acnam, float am, String an){
+            accountname = acnam;
+            ammount = am;
         accountnumber = an;
 
 
@@ -20,19 +18,17 @@ public class BankAccount {
         return total;
     }
 
-    public float getAmmount() {
-        return ammount;
-    }
-
     public String getAccountname() {
         return accountname;
     }
 
-    public int getPaylimit() {
-        return paylimit;
+    public float getAmmount() {
+        return ammount;
     }
 
     public String getAccountnumber() {
         return accountnumber;
     }
 }
+
+
