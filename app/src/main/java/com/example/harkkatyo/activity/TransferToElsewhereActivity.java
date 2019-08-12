@@ -16,7 +16,6 @@ import com.example.harkkatyo.BankAccount;
 import com.example.harkkatyo.BankAccountSavings;
 import com.example.harkkatyo.DatabaseHelper;
 import com.example.harkkatyo.R;
-import com.example.harkkatyo.XML;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,6 @@ public class TransferToElsewhereActivity extends AppCompatActivity implements Ad
     private EditText elseaccoountnumber;
     private EditText ammount;
     private int idnum;
-    private XML xml;
     Context context = null;
     DatabaseHelper databaseHelper;
     ArrayAdapter<BankAccount> adapter;
@@ -50,7 +48,6 @@ public class TransferToElsewhereActivity extends AppCompatActivity implements Ad
         arrayList = new ArrayList<>();
         arrayListCurrentTo = new ArrayList<>();
         arrayListSavingsTo = new ArrayList<>();
-        xml = new XML();
         spinneri();
 
 

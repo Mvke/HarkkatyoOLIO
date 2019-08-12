@@ -19,7 +19,6 @@ import com.example.harkkatyo.BankAccount;
 import com.example.harkkatyo.BankAccountSavings;
 import com.example.harkkatyo.DatabaseHelper;
 import com.example.harkkatyo.R;
-import com.example.harkkatyo.XML;
 
 import java.util.ArrayList;
 
@@ -40,7 +39,6 @@ public class TransferActivity extends AppCompatActivity implements AdapterView.O
     ArrayList<BankAccountSavings> arrayListSavings;
     private Switch aSwitch1;
     private Switch aSwitch2;
-    private XML xml;
     private TextView textView;
 
     @Override
@@ -61,7 +59,6 @@ public class TransferActivity extends AppCompatActivity implements AdapterView.O
         aSwitch1 = findViewById(R.id.switch2);
         aSwitch2 = findViewById(R.id.switch4);
         textView = findViewById(R.id.textView29);
-        xml = new XML();
         spinnerFirst();
         check();
 
